@@ -106,6 +106,4 @@ const MusicBanner: React.FC<MusicBannerProps> = ({ className }) => {
 };
 
 export default MusicBanner;
-function setTimeLeft(arg0: (prev: any) => any) {
-  throw new Error("Function not implemented.");
-}
+
