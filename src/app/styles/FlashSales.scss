@@ -1,0 +1,244 @@
+.flash-sales {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .section-header {
+    margin-bottom: 40px;
+
+    .section-title-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+
+      .section-indicator {
+        width: 20px;
+        height: 40px;
+        background-color: #DB4444;
+        border-radius: 4px;
+      }
+
+      .section-subtitle {
+        color: #DB4444;
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+
+    .section-main-header {
+      display: flex;
+      align-items: center;
+      gap: 87px;
+      flex-wrap: wrap;
+
+      @media (max-width: 768px) {
+        gap: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-title {
+        font-size: 36px;
+        font-weight: 600;
+        color: #000000;
+        margin: 0;
+      }
+
+      .countdown {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .countdown-row {
+          display: flex;
+          align-items: center;
+          gap: 35px;
+
+          .countdown-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #000000;
+            text-align: center;
+            width: 35px;
+          }
+        }
+
+        .countdown-values {
+          display: flex;
+          align-items: center;
+          gap: 17px;
+
+          .countdown-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000000;
+            text-align: center;
+            width: 35px;
+          }
+
+          .countdown-separator {
+            font-size: 32px;
+            font-weight: 700;
+            color: #E07575;
+            width: 8px;
+            text-align: center;
+          }
+        }
+      }
+
+      .navigation-arrows {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+
+        @media (max-width: 768px) {
+          margin-left: 0;
+        }
+
+        .nav-arrow {
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background-color: #F5F5F5;
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #DB4444;
+            color: #FFFFFF;
+
+            .anticon {
+              color: #FFFFFF;
+            }
+          }
+
+          .anticon {
+            font-size: 18px;
+            color: #000000;
+            transition: color 0.3s ease;
+          }
+        }
+      }
+    }
+  }
+
+  .products-container {
+    margin-bottom: 60px;
+    overflow: hidden;
+
+    .products-grid {
+      display: flex;
+      gap: 30px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+      
+      // Hide scrollbar
+      scrollbar-width: none; // Firefox
+      -ms-overflow-style: none; // IE and Edge
+      
+      &::-webkit-scrollbar {
+        display: none; // Chrome, Safari, Opera
+      }
+    }
+  }
+
+  .view-all-container {
+    display: flex;
+    justify-content: center;
+
+    .view-all-btn {
+      background-color: #DB4444;
+      border: none;
+      color: #FFFFFF;
+      padding: 16px 48px;
+      font-size: 16px;
+      font-weight: 500;
+      height: auto;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #B73E3E;
+      }
+    }
+  }
+
+  // Mobile responsiveness
+  @media (max-width: 768px) {
+    padding: 20px 10px;
+
+    .section-header {
+      margin-bottom: 30px;
+
+      .section-title-group {
+        margin-bottom: 16px;
+
+        .section-subtitle {
+          font-size: 14px;
+        }
+      }
+
+      .section-main-header {
+        .section-title {
+          font-size: 28px;
+        }
+
+        .countdown {
+          .countdown-row {
+            gap: 20px;
+
+            .countdown-label {
+              font-size: 10px;
+              width: 30px;
+            }
+          }
+
+          .countdown-values {
+            gap: 12px;
+
+            .countdown-value {
+              font-size: 24px;
+              width: 30px;
+            }
+
+            .countdown-separator {
+              font-size: 24px;
+            }
+          }
+        }
+
+        .navigation-arrows {
+          .nav-arrow {
+            width: 40px;
+            height: 40px;
+
+            .anticon {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+
+    .products-container {
+      margin-bottom: 40px;
+
+      .products-grid {
+        gap: 15px;
+      }
+    }
+
+    .view-all-container {
+      .view-all-btn {
+        padding: 12px 32px;
+        font-size: 14px;
+      }
+    }
+  }
+}

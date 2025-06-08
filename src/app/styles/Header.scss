@@ -1,0 +1,385 @@
+$primary-color: #000000;
+$secondary-color: #000000;
+$text-color: #1f2937;
+$text-light: #6b7280;
+$white: #ffffff;
+$black: #000000;
+$border-color: #e5e7eb;
+$banner-bg: linear-gradient(135deg, $primary-color, $secondary-color);
+
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1200px;
+
+// Fixed mixins - moved declarations to top
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  
+  @media (max-width: $mobile) {
+    padding: 0 16px;
+  }
+}
+
+// Top Banner Styles
+.top-banner {
+  background: $banner-bg;
+  color: $white;
+  padding: 8px 20px;
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+  @include flex-between;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    animation: shine 3s infinite;
+  }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .banner-content {
+    flex: 1;
+    gap: 8px;
+    @include flex-center;
+
+    .banner-text {
+      font-weight: 500;
+      
+      @media (max-width: $mobile) {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .shop-now-btn {
+    color: $white !important;
+    font-weight: 600;
+    text-decoration: underline;
+    padding: 0;
+    height: auto;
+    
+    &:hover {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+  }
+
+  .language-selector {
+    color: $white !important;
+    border: none;
+    background: transparent;
+    
+    &:hover {
+      color: rgba(255, 255, 255, 0.8) !important;
+      background: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .anticon {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: $mobile) {
+    padding: 6px 16px;
+    font-size: 12px;
+    
+    .banner-content {
+      .banner-text {
+        display: none;
+      }
+    }
+    
+    .banner-content::before {
+      content: 'Summer Sale - 50% OFF!';
+    }
+  }
+}
+
+// Main Header Styles
+.main-header {
+  background: $white;
+  border-bottom: 1px solid $border-color;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  .header-container {
+    gap: 20px;
+    @include container;
+    @include flex-between;
+  }
+
+  .logo {
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      color: $text-color;
+      background: linear-gradient(135deg, $primary-color, $secondary-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      
+      @media (max-width: $mobile) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    .nav-link {
+      color: $text-color;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 8px 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(135deg, $primary-color, $secondary-color);
+        transition: width 0.3s ease;
+      }
+
+      &:hover {
+        color: $primary-color;
+        
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &.active {
+        color: $primary-color;
+        
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+
+    @media (max-width: $tablet) {
+      display: none;
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .search-container {
+      .search-input {
+        width: 280px;
+        border-radius: 8px;
+        border: 1px solid $border-color;
+        transition: all 0.3s ease;
+
+        &:focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+        }
+
+        .ant-input {
+          border: none;
+          outline: none;
+          box-shadow: none;
+        }
+
+        .anticon {
+          color: $text-light;
+        }
+
+        @media (max-width: $tablet) {
+          width: 200px;
+        }
+
+        @media (max-width: $mobile) {
+          display: none;
+        }
+      }
+    }
+
+    .action-icons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        color: $text-color;
+        @include flex-center;
+
+        &:hover {
+          background: rgba(99, 102, 241, 0.1);
+          color: $primary-color;
+        }
+
+        .anticon {
+          font-size: 20px;
+        }
+      }
+
+      .ant-badge {
+        .ant-badge-count {
+          background: $primary-color;
+          border-color: $primary-color;
+          font-size: 12px;
+          min-width: 18px;
+          height: 18px;
+          line-height: 18px;
+        }
+      }
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      color: $text-color;
+      @include flex-center;
+
+      &:hover {
+        background: rgba(99, 102, 241, 0.1);
+        color: $primary-color;
+      }
+
+      .anticon {
+        font-size: 20px;
+      }
+
+      @media (max-width: $tablet) {
+        display: flex;
+      }
+    }
+  }
+}
+
+// Mobile Navigation Drawer
+.mobile-nav-drawer {
+  .ant-drawer-content {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  }
+
+  .ant-drawer-header {
+    background: $white;
+    border-bottom: 1px solid $border-color;
+    
+    .ant-drawer-title {
+      font-weight: 600;
+      color: $text-color;
+    }
+  }
+
+  .mobile-nav {
+    padding: 20px 0;
+
+    .mobile-nav-link {
+      display: block;
+      padding: 16px 0;
+      color: $text-color;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $primary-color;
+        padding-left: 10px;
+      }
+
+      &.active {
+        color: $primary-color;
+        font-weight: 600;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .mobile-search {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid $border-color;
+
+    .ant-input-affix-wrapper {
+      border-radius: 8px;
+      border: 1px solid $border-color;
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: $mobile) {
+  .main-header {
+    padding: 12px 0;
+    
+    .header-container {
+      gap: 12px;
+    }
+  }
+}
+
+// Animation for smooth transitions
+* {
+  transition: all 0.3s ease;
+}
+
+// Scroll behavior
+html {
+  scroll-behavior: smooth;
+}
+
+// Focus styles for accessibility
+button:focus,
+input:focus,
+a:focus {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+}
