@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button, Rate } from "antd";
 import { HeartOutlined, EyeOutlined } from "@ant-design/icons";

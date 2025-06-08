@@ -63,8 +63,9 @@ const FlashSales: React.FC = () => {
     <section className="flash-sales">
       <div className="section-header">
         <div className="section-title-group">
-          <div className="section-indicator" />-{" "}
-          <span className="section-subtitle">Today&apos;s</span>+
+          <div className="section-indicator"></div>
+        
+          <span className="section-subtitle">Today&apos;s</span>
         </div>
         <div className="section-main-header">
           <h2 className="section-title">Flash Sales</h2>

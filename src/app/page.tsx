@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 
-// Using relative imports - ensure these paths match your actual file structure
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import Footer from "./components/Footer";

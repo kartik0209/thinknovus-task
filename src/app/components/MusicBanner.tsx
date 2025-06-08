@@ -1,7 +1,8 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button, Tag } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+
 import "../styles/MusicBanner.scss";
 import jbl from "../../../public/assets/jbl.png";
 
@@ -10,11 +11,41 @@ interface MusicBannerProps {
 }
 
 const MusicBanner: React.FC<MusicBannerProps> = ({ className }) => {
-  const features = [
-    { number: "23", label: "Hours" },
-    { number: "05", label: "Days" },
-    { number: "59", label: "Minutes" },
-    { number: "35", label: "Seconds" },
+  const [timeLeft, setTimeLeft] = useState({
+    days: 3,
+    hours: 23,
+    minutes: 19,
+    seconds: 56,
+  });
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        } else if (prev.hours > 0) {
+          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        } else if (prev.days > 0) {
+          return {
+            ...prev,
+            days: prev.days - 1,
+            hours: 23,
+            minutes: 59,
+            seconds: 59,
+          };
+        }
+        return prev;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+   const features = [
+    { number: String(timeLeft.days).padStart(2, '0'), label: "Days" },
+    { number: String(timeLeft.hours).padStart(2, '0'), label: "Hours" },
+    { number: String(timeLeft.minutes).padStart(2, '0'), label: "Minutes" },
+    { number: String(timeLeft.seconds).padStart(2, '0'), label: "Seconds" },
   ];
 
   return (
@@ -49,7 +80,6 @@ const MusicBanner: React.FC<MusicBannerProps> = ({ className }) => {
           <Button
             type="primary"
             size="large"
-            icon={<ShoppingCartOutlined />}
             className="music-banner__buy-button"
           >
             Buy Now!
@@ -76,3 +106,6 @@ const MusicBanner: React.FC<MusicBannerProps> = ({ className }) => {
 };
 
 export default MusicBanner;
+function setTimeLeft(arg0: (prev: any) => any) {
+  throw new Error("Function not implemented.");
+}
